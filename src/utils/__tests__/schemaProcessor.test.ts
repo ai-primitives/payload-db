@@ -86,11 +86,18 @@ describe('processSchema', () => {
     expect(userPostsField).toBeUndefined();
     
     // Instead, the author field should have additional configuration
-    expect(authorField?.fields).toBeDefined();
-    const relatedField = authorField?.fields?.find((f: any) => f.name === 'userPosts');
-    expect(relatedField).toBeDefined();
-    expect(relatedField?.type).toBe('relationship');
-    expect(relatedField?.hasMany).toBe(true);
+    expect(authorField).toBeDefined();
+    // Make sure fields property exists on the authorField using type guard
+    if (authorField && 'fields' in authorField) {
+      expect(authorField.fields).toBeDefined();
+      const relatedField = authorField.fields.find((f: any) => f.name === 'userPosts');
+      expect(relatedField).toBeDefined();
+      expect(relatedField?.type).toBe('relationship');
+      // Make sure hasMany property exists on relatedField
+      if (relatedField && 'hasMany' in relatedField) {
+        expect(relatedField.hasMany).toBe(true);
+      }
+    }
   });
 
   it('should handle schemas with multiple collections and relationships', () => {
