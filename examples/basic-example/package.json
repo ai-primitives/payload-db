@@ -1,0 +1,20 @@
+{
+  "name": "payload-db-example",
+  "version": "1.0.0",
+  "description": "Example application demonstrating payload-db usage",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "payload": "^2.0.0",
+    "@payloadcms/db-mongodb": "^1.0.0",
+    "payload-db": "file:../.."
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "private": true
+}
