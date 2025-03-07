@@ -1,0 +1,13 @@
+{
+  "name": "payload-db-crm-example",
+  "version": "1.0.0",
+  "description": "A CRM example using payload-db",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "payload": "^1.6.0"
+  }
+}
