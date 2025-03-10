@@ -31,12 +31,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "payload": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
     "@vitest/coverage-v8": "^3.0.7",
     "jest": "^29.0.0",
+    "payload": "^2.0.0",
     "ts-jest": "^29.0.0",
     "typescript": "^5.0.0",
     "vitest": "^3.0.7"

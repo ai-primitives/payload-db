@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { DB, configureDatabase } from '../index';
+import { DB } from '../index';
 import * as schemaProcessor from '../utils/schemaProcessor';
 
 // Mock dependencies
@@ -21,7 +21,7 @@ describe('DB function', () => {
     }]);
   });
 
-  it('should create a valid PayloadDBResult', () => {
+  it('should return collections and collectionRefs', () => {
     const mockSchema = {
       posts: {
         title: 'text',
@@ -29,25 +29,17 @@ describe('DB function', () => {
       }
     };
     
-    // Create a mock database adapter
-    const mockDbAdapter = {} as any;
-    
-    const result = DB(mockSchema, mockDbAdapter);
+    const result = DB(mockSchema);
     
     // Verify the result structure
-    expect(result).toHaveProperty('config');
     expect(result).toHaveProperty('collections');
-    expect(result).toHaveProperty('getConfig');
+    expect(result).toHaveProperty('collectionRefs');
     
     // Verify the collections are processed
     expect(schemaProcessor.processSchema).toHaveBeenCalledWith(mockSchema);
     
-    // Verify the collections object has the right format
-    expect(result.collections).toHaveProperty('posts');
-    expect(result.collections.posts).toEqual({ collectionName: 'posts' });
-    
-    // Verify the config is properly generated
-    expect(result.config.collections).toEqual([{
+    // Verify the collections array contains the processed collections
+    expect(result.collections).toEqual([{
       slug: 'posts',
       fields: [
         { name: 'title', type: 'text' },
@@ -55,84 +47,29 @@ describe('DB function', () => {
       ]
     }]);
     
-    // Verify getConfig returns the same config
-    expect(result.getConfig()).toBe(result.config);
+    // Verify the collectionRefs object has the right format
+    expect(result.collectionRefs).toHaveProperty('posts');
+    expect(result.collectionRefs.posts).toEqual({ collectionName: 'posts' });
   });
 
-  it('should merge additional config options', () => {
+  it('should accept additional config options', () => {
     const mockSchema = { posts: { title: 'text' } };
-    const mockDbAdapter = {} as any;
     const additionalConfig = {
-      serverURL: 'http://localhost:3000',
-      admin: {
-        user: 'admin',
-      },
+      customOption: 'value',
     };
     
-    const result = DB(mockSchema, mockDbAdapter, additionalConfig);
+    const result = DB(mockSchema, additionalConfig);
     
-    // Verify the additional config is merged
-    expect(result.config).toHaveProperty('serverURL', 'http://localhost:3000');
-    expect(result.config).toHaveProperty('admin');
-    expect(result.config.admin).toHaveProperty('user', 'admin');
-  });
-});
-
-describe('configureDatabase', () => {
-  it('should configure MongoDB correctly', () => {
-    const config = configureDatabase({
-      type: 'mongodb',
-      uri: 'mongodb://localhost:27017/test'
-    });
+    // Verify the collections are processed
+    expect(schemaProcessor.processSchema).toHaveBeenCalledWith(mockSchema);
     
-    expect(config).toEqual({
-      adapter: 'mongoose',
-      url: 'mongodb://localhost:27017/test'
-    });
-  });
-
-  it('should configure Postgres correctly', () => {
-    const config = configureDatabase({
-      type: 'postgres',
-      uri: 'postgres://user:pass@localhost:5432/dbname'
-    });
-    
-    expect(config).toEqual({
-      adapter: 'postgres',
-      url: 'postgres://user:pass@localhost:5432/dbname'
-    });
-  });
-
-  it('should configure SQLite correctly', () => {
-    const config = configureDatabase({
-      type: 'sqlite',
-      uri: 'file:./mydb.sqlite'
-    });
-    
-    expect(config).toEqual({
-      adapter: 'sqlite',
-      url: 'file:./mydb.sqlite'
-    });
-  });
-
-  it('should configure REST adapter correctly', () => {
-    const config = configureDatabase({
-      type: 'rest',
-      uri: 'https://api.example.com/v1'
-    });
-    
-    expect(config).toEqual({
-      adapter: 'rest',
-      url: 'https://api.example.com/v1'
-    });
-  });
-
-  it('should throw an error for unsupported database types', () => {
-    expect(() => {
-      configureDatabase({ 
-        type: 'unsupported' as any, 
-        uri: 'invalid://connection' 
-      });
-    }).toThrow('Unsupported database type: unsupported');
+    // Verify the collections array contains the processed collections
+    expect(result.collections).toEqual([{
+      slug: 'posts',
+      fields: [
+        { name: 'title', type: 'text' },
+        { name: 'content', type: 'richText' }
+      ]
+    }]);
   });
 });
