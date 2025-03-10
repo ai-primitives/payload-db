@@ -30,9 +30,9 @@ pnpm add payload-db
 
 ```javascript
 // Import necessary packages
-const { DB, configureDatabase } = require('payload-db');
-const payload = require('payload');
-const express = require('express');
+import { DB, configureDatabase } from 'payload-db';
+import payload from 'payload';
+import express from 'express';
 
 // Define your schema with simplified syntax
 const dbConfig = DB({
