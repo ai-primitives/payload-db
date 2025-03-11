@@ -30,9 +30,8 @@ pnpm add payload-db
 
 ```javascript
 // Import necessary packages
-const { DB } = require('payload-db');
-const payload = require('payload');
-const express = require('express');
+import { DB, configureDatabase } from 'payload-db';
+import { buildConfig } from 'payload/config';
 
 // Define your schema with simplified syntax
 const { collections, collectionRefs } = DB({
@@ -56,24 +55,18 @@ const { collections, collectionRefs } = DB({
   }
 });
 
-// Initialize express app
-const app = express();
+// Configure your database
+dbConfig.config.db = configureDatabase({
+  type: 'mongodb',
+  uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/my-database'
+});
 
-// Initialize Payload with the generated collections
-payload.init({
-  secret: process.env.PAYLOAD_SECRET || 'your-secret-key',
-  express: app,
-  collections, // Pass the collections array directly to Payload
-  // Configure your database adapter directly in Payload
-  db: {
-    adapter: 'mongoose', // or any other adapter
-    url: process.env.MONGODB_URI || 'mongodb://localhost:27017/my-database'
-  }
-}).then(() => {
-  // Start express server
-  app.listen(3000, () => {
-    console.log('Server started on port 3000');
-  });
+// Initialize Payload with the generated configuration
+// For Payload 3.0 with NextJS, you would typically use this in your payload.config.ts file
+export default buildConfig({
+  // Your other Payload config options
+  collections: dbConfig.config.collections,
+  db: dbConfig.config.db,
 });
 ```
 
