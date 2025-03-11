@@ -86,7 +86,7 @@ Here are the supported field types and their mappings to Payload CMS field types
 | `'Option1 \| Option2 \| Option3'` | Select field with options |
 | `'collection'`    | Relationship field      |
 | `'collection[]'`  | Relationship (hasMany)  |
-| `'<-collection'`  | Join field (reverse relation) |
+| `'<-collection.field'`  | Join field (reverse relation) |
 | `'tags'`          | Select field (hasMany)  |
 | `'tags[]'`        | Array of Select fields  |
 
