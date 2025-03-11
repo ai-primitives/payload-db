@@ -45,7 +45,7 @@ const { collections, collectionRefs } = DB({
   },
   tags: {
     name: 'text',
-    posts: '<-posts'  // Join field to posts (reverse relation)
+    posts: '<-posts.tags'  // Join field to posts (reverse relation)
   },
   authors: {
     name: 'text',
