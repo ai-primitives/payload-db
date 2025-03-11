@@ -1,5 +1,5 @@
-import { Config as PayloadConfig } from 'payload/config';
-import { Field, CollectionConfig } from 'payload/types';
+// Import types from payload only for type checking, not for runtime
+import type { Field, CollectionConfig } from 'payload/types';
 
 // Simplified field type strings that users will use
 export type SimpleFieldType =
@@ -21,22 +21,9 @@ export interface SimpleSchema {
   };
 }
 
-// Database configuration options
-export interface DBConfig {
-  type: 'mongodb' | 'postgres' | 'sqlite' | 'rest';
-  uri: string;
-}
-
-// Additional configuration options
-export interface AdditionalConfig extends Partial<PayloadConfig> {
-  database?: DBConfig;
-}
-
-// Result of the DB function - now just returns configuration
-export interface PayloadDBResult {
-  config: PayloadConfig; // The complete Payload config
-  collections: Record<string, { collectionName: string }>; // Simple reference to collection names
-  getConfig: () => PayloadConfig; // Helper to get the config
+// Additional configuration options (no longer extends PayloadConfig)
+export interface AdditionalConfig {
+  [key: string]: any;
 }
 
 // Internal types used for transformation

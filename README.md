@@ -14,7 +14,7 @@ Simplified Data Schema Definition for [Payload CMS](https://payloadcms.com) appl
 - **Join Fields** - Simplified syntax for defining reverse relationships (join fields)
 - **Full Payload CMS Compatibility** - Generates standard Payload CMS configuration
 - **Type Safety** - Full TypeScript support for your data models
-- **Minimal Dependencies** - Only depends on Payload CMS itself
+- **Zero Dependencies** - No runtime dependencies, only uses Payload types for development
 
 ## Installation
 
@@ -34,7 +34,7 @@ import { DB, configureDatabase } from 'payload-db';
 import { buildConfig } from 'payload/config';
 
 // Define your schema with simplified syntax
-const dbConfig = DB({
+const { collections, collectionRefs } = DB({
   posts: {
     title: 'text',
     content: 'richtext',
@@ -110,40 +110,31 @@ const db = DB({
 
 ## Database Configuration
 
-Use the `configureDatabase` helper to set up your database adapter:
+Configure your database adapter directly in your Payload configuration:
 
 ```javascript
-dbConfig.config.db = configureDatabase({
-  type: 'mongodb', // or 'postgres', 'sqlite', 'rest'
-  uri: 'your-connection-string'
-});
-```
-
-You can use different database adapters:
-
-```javascript
-// MongoDB
-configureDatabase({
-  type: 'mongodb',
-  uri: 'mongodb://localhost:27017/my-db'
+// Get collections from payload-db
+const { collections } = DB({
+  // Your schema definition
 });
 
-// PostgreSQL
-configureDatabase({
-  type: 'postgres',
-  uri: 'postgres://user:pass@localhost:5432/my-db'
-});
-
-// SQLite
-configureDatabase({
-  type: 'sqlite',
-  uri: 'sqlite://path/to/database.sqlite'
-});
-
-// REST API (connecting to a remote Payload instance)
-configureDatabase({
-  type: 'rest',
-  uri: 'https://api.example.com'
+// Initialize Payload with the collections and your database adapter
+payload.init({
+  // ...other config
+  collections,
+  db: {
+    // MongoDB
+    adapter: 'mongoose',
+    url: 'mongodb://localhost:27017/my-db'
+    
+    // Or PostgreSQL
+    // adapter: 'postgres',
+    // url: 'postgres://user:pass@localhost:5432/my-db'
+    
+    // Or SQLite
+    // adapter: 'sqlite',
+    // url: 'sqlite://path/to/database.sqlite'
+  }
 });
 ```
 
@@ -157,25 +148,34 @@ npm install @payloadcms/db-postgres
 
 ## Advanced Usage
 
-You can pass additional Payload CMS configuration options:
+You can pass additional configuration options to the DB function:
 
 ```javascript
-const dbConfig = DB({
+const { collections, collectionRefs } = DB({
   // Collections definition
 }, {
-  // Additional Payload CMS config options
-  serverURL: 'http://localhost:3000',
-  admin: {
-    user: 'users', // Enable admin UI with users collection
-  },
-  // ... other Payload config options
+  // Additional configuration options
+  customOption: 'value',
 });
 
-// You can also access the generated config directly
-const payloadConfig = dbConfig.getConfig();
+// You can further customize the collections before passing to Payload
+const customizedCollections = collections.map(collection => {
+  // Add custom hooks, access control, etc.
+  return {
+    ...collection,
+    hooks: {
+      beforeChange: [
+        // Your custom hooks
+      ]
+    }
+  };
+});
 
-// Or extract the collection configs for further customization
-const { collections } = payloadConfig;
+// Then use the customized collections with Payload
+payload.init({
+  // ...other config
+  collections: customizedCollections,
+});
 ```
 
 ## Contributing
