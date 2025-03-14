@@ -33,15 +33,6 @@ export const transformField = (name: string, fieldType: SimpleFieldType): FieldD
   // Check if it's a many-relationship
   if (fieldType.endsWith('[]')) {
     const relationTo = fieldType.substring(0, fieldType.length - 2);
-    if (relationTo === 'tags') {
-      // Special case for tags
-      return {
-        type: 'select',
-        name,
-        hasMany: true,
-        options: [], // Will be filled during post-processing
-      };
-    }
     
     return {
       type: 'relationship',
@@ -71,6 +62,8 @@ export const transformField = (name: string, fieldType: SimpleFieldType): FieldD
   switch (fieldType) {
     case 'text':
       return { type: 'text', name };
+    case 'textarea':
+      return { type: 'textarea', name };
     case 'richtext':
       return { type: 'richText', name };
     case 'number':
@@ -83,13 +76,6 @@ export const transformField = (name: string, fieldType: SimpleFieldType): FieldD
       return { type: 'checkbox', name };
     case 'json':
       return { type: 'json', name };
-    case 'tags':
-      return { 
-        type: 'select', 
-        name,
-        hasMany: true,
-        options: [] // Will be filled during post-processing
-      };
     default:
       // Assume it's a simple relationship
       return {

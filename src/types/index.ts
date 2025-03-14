@@ -4,14 +4,13 @@ import type { Field, CollectionConfig } from 'payload/types';
 // Simplified field type strings that users will use
 export type SimpleFieldType =
   | 'text'
+  | 'textarea'
   | 'richtext'
   | 'number'
   | 'date'
   | 'email'
   | 'checkbox'
   | 'json'
-  | 'tags'
-  | 'tags[]'
   | string; // For relationships, select options with pipe separators ('Option1 | Option2 | Option3'), or '<-posts'
 
 // Simple schema definition interface

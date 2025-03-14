@@ -36,13 +36,13 @@ describe('transformField', () => {
       relationTo: 'categories',
     });
 
-    // Special case for tags
+    // Tags should be treated as a relationship
     const tagsResult = transformField('postTags', 'tags[]');
     expect(tagsResult).toEqual({
-      type: 'select',
+      type: 'relationship',
       name: 'postTags',
       hasMany: true,
-      options: [],
+      relationTo: 'tags',
     });
   });
 
@@ -92,11 +92,13 @@ describe('transformField', () => {
 
     const tagsField = transformField('tags', 'tags');
     expect(tagsField).toEqual({
-      type: 'select',
+      type: 'relationship',
       name: 'tags',
-      hasMany: true,
-      options: [],
+      relationTo: 'tags',
     });
+    
+    const textareaField = transformField('description', 'textarea');
+    expect(textareaField).toEqual({ type: 'textarea', name: 'description' });
   });
 
   it('should default to a relationship field for unknown types', () => {
