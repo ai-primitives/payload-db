@@ -1,9 +1,9 @@
 /**
- * Basic example of how to use payload-db
+ * Basic example of how to use simple-payload
  */
 
 // In a real application, you would import from the package
-// const { DB, configureDatabase } = require('payload-db');
+// const { DB, configureDatabase } = require('simple-payload');
 // For this example, we'll import from the local package
 const { DB, configureDatabase } = require('../../dist');
 
@@ -50,7 +50,7 @@ const dbConfig = DB({
 // Configure the database connection
 dbConfig.config.db = configureDatabase({
   type: 'mongodb',
-  uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/payload-db-example'
+  uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/simple-payload-example'
 });
 
 // Initialize express app
@@ -104,8 +104,8 @@ async function main() {
     const post = await payloadInstance.create({
       collection: 'posts',
       data: {
-        title: 'Getting Started with payload-db',
-        content: '<p>This is a sample post created using payload-db.</p>',
+        title: 'Getting Started with simple-payload',
+        content: '<p>This is a sample post created using simple-payload.</p>',
         slug: 'getting-started',
         status: 'Published', // Using select option - make sure it matches one of the defined options
         contentType: 'Markdown', // Using select option

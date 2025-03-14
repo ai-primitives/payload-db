@@ -1,10 +1,10 @@
-# payload-db
+# simple-payload
 
 Simplified Data Schema Definition for [Payload CMS](https://payloadcms.com) applications using concise syntax.
 
 ## Overview
 
-`payload-db` is a lightweight schema generator for Payload CMS that enables extremely concise data model definitions. This package focuses purely on transforming a simplified schema format into Payload CMS compatible configuration, making it easier to define your data models with minimal code.
+`simple-payload` is a lightweight schema generator for Payload CMS that enables extremely concise data model definitions. This package focuses purely on transforming a simplified schema format into Payload CMS compatible configuration, making it easier to define your data models with minimal code.
 
 ## Features
 
@@ -19,18 +19,18 @@ Simplified Data Schema Definition for [Payload CMS](https://payloadcms.com) appl
 ## Installation
 
 ```bash
-npm install payload-db
+npm install simple-payload
 # or
-yarn add payload-db
+yarn add simple-payload
 # or
-pnpm add payload-db
+pnpm add simple-payload
 ```
 
 ## Quick Start
 
 ```javascript
 // Import necessary packages
-import { DB, configureDatabase } from 'payload-db';
+import { DB, configureDatabase } from 'simple-payload';
 import { buildConfig } from 'payload/config';
 
 // Define your schema with simplified syntax

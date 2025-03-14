@@ -1,6 +1,6 @@
-# Payload DB CRM Example
+# Simple Payload CRM Example
 
-This example demonstrates how to build a comprehensive Customer Relationship Management (CRM) system using Payload DB. It showcases how to model complex business relationships and data structures common in CRM applications, focusing on payload-db as an agnostic data modeling and access layer.
+This example demonstrates how to build a comprehensive Customer Relationship Management (CRM) system using Simple Payload. It showcases how to model complex business relationships and data structures common in CRM applications, focusing on simple-payload as an agnostic data modeling and access layer.
 
 ## Features
 

@@ -1,9 +1,9 @@
 /**
- * CRM example using payload-db
+ * CRM example using simple-payload
  */
 
 // In a real application, you would import from the package
-// const { DB, configureDatabase } = require('payload-db')
+// const { DB, configureDatabase } = require('simple-payload')
 // For this example, we'll import from the local package
 const { DB, configureDatabase } = require('../../dist')
 
@@ -145,14 +145,14 @@ const db = DB({
 // Option 1: MongoDB
 db.config.db = configureDatabase({
   type: 'mongodb',
-  uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/payload-db-crm-example'
+  uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/simple-payload-crm-example'
 })
 
 // Option 2: PostgreSQL (commented out)
 /*
 db.config.db = configureDatabase({
   type: 'postgres',
-  uri: process.env.POSTGRES_URI || 'postgresql://user:password@localhost:5432/payload-db-crm-example'
+  uri: process.env.POSTGRES_URI || 'postgresql://user:password@localhost:5432/simple-payload-crm-example'
 })
 */
 
@@ -160,7 +160,7 @@ db.config.db = configureDatabase({
 /*
 db.config.db = configureDatabase({
   type: 'sqlite',
-  uri: process.env.SQLITE_PATH || './payload-db-crm-example.sqlite'
+  uri: process.env.SQLITE_PATH || './simple-payload-crm-example.sqlite'
 })
 */
 

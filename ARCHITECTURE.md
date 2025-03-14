@@ -1,6 +1,6 @@
 # Payload CMS Architecture
 
-This document provides an overview of Payload CMS's architecture, focusing on collections and fields. Payload-db aims to provide a simplified interface for defining Payload CMS data models while maintaining compatibility with Payload's powerful features.
+This document provides an overview of Payload CMS's architecture, focusing on collections and fields. Simple-payload aims to provide a simplified interface for defining Payload CMS data models while maintaining compatibility with Payload's powerful features.
 
 ## Collections
 
@@ -114,11 +114,11 @@ Most fields in Payload share these common configuration options:
 | `localized` | Enable localization for this field |
 | `admin` | Admin-specific configuration |
 
-## Payload-db Simplified Syntax
+## Simple-payload Simplified Syntax
 
-Payload-db provides a simplified syntax for defining Payload CMS data models. It abstracts away much of the complexity while maintaining compatibility with Payload's powerful features.
+Simple-payload provides a simplified syntax for defining Payload CMS data models. It abstracts away much of the complexity while maintaining compatibility with Payload's powerful features.
 
-Example of standard Payload syntax vs. payload-db simplified syntax:
+Example of standard Payload syntax vs. simple-payload simplified syntax:
 
 ### Standard Payload Syntax
 
@@ -150,7 +150,7 @@ const Posts = {
 }
 ```
 
-### Payload-db Simplified Syntax
+### Simple-payload Simplified Syntax
 
 ```javascript
 const db = DB({
@@ -172,7 +172,7 @@ const db = DB({
 })
 ```
 
-The payload-db syntax provides a more concise way to define collections and their relationships, while still leveraging the full power of Payload CMS under the hood.
+The simple-payload syntax provides a more concise way to define collections and their relationships, while still leveraging the full power of Payload CMS under the hood.
 
 ## Key Features
 

@@ -1,5 +1,5 @@
 {
-  "name": "payload-db",
+  "name": "simple-payload",
   "version": "0.1.0",
   "description": "Simplified Data Schema Definition for Payload CMS applications using concise syntax",
   "main": "dist/index.js",
@@ -46,10 +46,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nathanclevenger/payload-db.git"
+    "url": "git+https://github.com/ai-primitives/simple-payload.git"
   },
   "bugs": {
-    "url": "https://github.com/nathanclevenger/payload-db/issues"
+    "url": "https://github.com/ai-primitives/simple-payload/issues"
   },
-  "homepage": "https://github.com/nathanclevenger/payload-db#readme"
+  "homepage": "https://github.com/ai-primitives/simple-payload#readme"
 }
