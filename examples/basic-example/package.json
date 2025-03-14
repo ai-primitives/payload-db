@@ -1,7 +1,7 @@
 {
-  "name": "payload-db-example",
+  "name": "simple-payload-example",
   "version": "1.0.0",
-  "description": "Example application demonstrating payload-db usage",
+  "description": "Example application demonstrating simple-payload usage",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -11,7 +11,7 @@
     "express": "^4.17.1",
     "payload": "^2.0.0",
     "@payloadcms/db-mongodb": "^1.0.0",
-    "payload-db": "file:../.."
+    "simple-payload": "file:../.."
   },
   "engines": {
     "node": ">=16.0.0"

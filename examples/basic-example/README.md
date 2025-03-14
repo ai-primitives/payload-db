@@ -1,6 +1,6 @@
-# payload-db Basic Example
+# simple-payload Basic Example
 
-This example demonstrates how to use the `payload-db` package to create a simple blog application with posts, authors, and tags using a simplified schema definition.
+This example demonstrates how to use the `simple-payload` package to create a simple blog application with posts, authors, and tags using a simplified schema definition.
 
 ## Prerequisites
 
@@ -13,11 +13,11 @@ This example demonstrates how to use the `payload-db` package to create a simple
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/payload-db.git
-cd payload-db
+git clone https://github.com/yourusername/simple-payload.git
+cd simple-payload
 ```
 
-2. **Build the payload-db package**
+2. **Build the simple-payload package**
 
 ```bash
 npm install
@@ -35,7 +35,7 @@ touch .env
 Add the following content (adjust as needed for your environment):
 
 ```
-MONGODB_URI=mongodb://localhost:27017/payload-db-example
+MONGODB_URI=mongodb://localhost:27017/simple-payload-example
 PAYLOAD_SECRET=your-secret-key-change-me
 ```
 
@@ -66,7 +66,7 @@ The example demonstrates several key concepts:
 
 This example demonstrates:
 
-1. **Simplified Schema Definition** - See how easy it is to define your data model using the payload-db concise syntax
+1. **Simplified Schema Definition** - See how easy it is to define your data model using the simple-payload concise syntax
 2. **Select Fields with Options** - Define select fields with predefined options using the pipe syntax
 3. **Join Fields** - Define reverse relationships between collections with the `<-` syntax
 4. **Schema Transformation** - See how our simplified schema gets transformed into Payload CMS configuration
